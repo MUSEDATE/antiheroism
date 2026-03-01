@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>antiheroism</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --fg: #f0f0f0;
+      --muted: #555;
+      --accent: #f0f0f0;
+      --border: #1e1e1e;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      letter-spacing: 0.02em;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: lowercase;
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--fg);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+      color: var(--fg);
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--muted);
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--fg);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: lowercase;
+      border-bottom: 1px solid var(--muted);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .hero-cta:hover {
+      border-color: var(--fg);
+    }
+
+    .hero-cta::after {
+      content: '→';
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0 3rem;
+      width: calc(100% - 6rem);
+    }
+
+    /* ── VENTURES ── */
+    .ventures {
+      padding: 4rem 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .venture-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .venture-item {
+      background: var(--bg);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: background 0.2s;
+    }
+
+    .venture-item:hover {
+      background: #111;
+    }
+
+    .venture-name {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: var(--fg);
+    }
+
+    .venture-tag {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .venture-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 0.25rem;
+    }
+
+    .venture-link {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      margin-top: auto;
+      padding-top: 1rem;
+      transition: color 0.2s;
+    }
+
+    .venture-link:hover {
+      color: var(--fg);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-right a {
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .footer-right a:hover {
+      color: var(--fg);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 640px) {
+      nav, .hero, .ventures, footer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .divider {
+        margin: 0 1.5rem;
+        width: calc(100% - 3rem);
+      }
+
+      .nav-links {
+        gap: 1.5rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="logo" href="/">antiheroism</a>
+    <ul class="nav-links">
+      <li><a href="#ventures">ventures</a></li>
+      <li><a href="mailto:hello@antiheroism.com">contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <p class="hero-label">building differently</p>
+    <h1 class="hero-title">
+      we build things<br />
+      <em>the world didn't ask for.</em>
+    </h1>
+    <p class="hero-desc">
+      antiheroism is a venture studio. we back founders who reject the obvious path and build products that shouldn't work — until they do.
+    </p>
+    <a class="hero-cta" href="#ventures">see what we're building</a>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="ventures" id="ventures">
+    <p class="section-label">ventures</p>
+    <div class="venture-list">
+      <div class="venture-item">
+        <span class="venture-name">atpify</span>
+        <span class="venture-tag">social · matching</span>
+        <p class="venture-desc">
+          a new kind of connection. built for people who don't fit the mold.
+        </p>
+        <a class="venture-link" href="https://atpify.com" target="_blank">atpify.com ↗</a>
+      </div>
+      <div class="venture-item">
+        <span class="venture-name">—</span>
+        <span class="venture-tag">coming soon</span>
+        <p class="venture-desc">
+          something new is in the works.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-left">© 2026 antiheroism</span>
+    <div class="footer-right">
+      <a href="https://github.com/MUSEDATE/antiheroism" target="_blank">github</a>
+      <a href="mailto:hello@antiheroism.com">hello@antiheroism.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>
