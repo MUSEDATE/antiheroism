@@ -8,6 +8,8 @@ export function HomeMotion() {
     const openingLogo = document.querySelector<HTMLElement>('.opening-logo-shell')
     const heroLogo = document.querySelector<HTMLElement>('.hero-logo-stage')
     const heroImage = document.querySelector<HTMLElement>('.brand-image')
+    const openingAlreadySeen = root.dataset.openingSeen === 'true'
+    let openingTimer: number | undefined
 
     const updateOpeningTarget = () => {
       if (!openingLogo || !heroLogo) return
@@ -27,6 +29,15 @@ export function HomeMotion() {
     }
 
     updateOpeningTarget()
+    if (openingLogo && !openingAlreadySeen) {
+      openingTimer = window.setTimeout(() => {
+        try {
+          window.localStorage.setItem('antiheroism-opening-seen', '1')
+          root.dataset.openingSeen = 'true'
+        } catch {}
+      }, 3300)
+    }
+
     document
       .querySelectorAll<HTMLImageElement>('.opening-logo, .brand-image')
       .forEach((img) => {
@@ -94,6 +105,9 @@ export function HomeMotion() {
       .forEach((n) => keywordObserver.observe(n))
 
     return () => {
+      if (openingTimer) {
+        window.clearTimeout(openingTimer)
+      }
       window.removeEventListener('resize', updateOpeningTarget)
       window.removeEventListener('scroll', handleScroll)
       revealObserver.disconnect()

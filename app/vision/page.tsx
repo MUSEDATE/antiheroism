@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { HomeMotion } from '../components/home-motion'
 import { SiteFooter } from '../components/site-footer'
 import { SiteHeader } from '../components/site-header'
 import { visionSections } from '../site-content'
@@ -6,15 +7,16 @@ import { visionSections } from '../site-content'
 export default function VisionPage() {
   return (
     <main className="page-root interior-page">
+      <HomeMotion />
       <SiteHeader current="/vision" />
 
       <section className="interior-hero">
         <div className="page-shell interior-hero-shell">
-          <p className="section-kicker">antiheroism vision</p>
-          <h1 className="interior-title mt-6">A studio trying to make freedom, self-authorship, and happiness more buildable.</h1>
+          <p className="section-kicker">vision</p>
+          <h1 className="interior-title mt-6">Return attention to people.</h1>
           <p className="interior-copy mt-8">
-            This page is the place where Antiheroism&apos;s core vision gets written down in full. The current version is
-            intentionally concise, but the structure is ready for a longer manifesto as the language matures.
+            Antiheroism exists to help more people do what they actually want to do, become the main character in their
+            own lives, and move toward freedom and happiness with more real authorship.
           </p>
         </div>
       </section>
@@ -22,22 +24,21 @@ export default function VisionPage() {
       <section className="interior-sections">
         <div className="page-shell interior-stack">
           {visionSections.map((section, index) => (
-            <article key={section.title} className={`interior-block reveal-up ${index === 1 ? 'delay-1' : ''} ${index === 2 ? 'delay-2' : ''}`}>
+            <article key={section.title} className={`interior-block reveal-block ${index === 1 ? 'delay-1' : ''} ${index === 2 ? 'delay-2' : ''}`}>
               <p className="story-index">0{index + 1}</p>
               <h2 className="section-title mt-4">{section.title}</h2>
               <p className="story-body mt-6">{section.body}</p>
             </article>
           ))}
 
-          <article className="interior-block reveal-up">
-            <p className="section-kicker">writing in progress</p>
+          <article className="interior-block reveal-block">
+            <p className="section-kicker">what this means in practice</p>
             <p className="story-body mt-4">
-              The detailed statement is still being written and discussed internally. This page is meant to grow into
-              the definitive articulation of what Antiheroism wants to change and what kinds of products belong inside
-              that mission.
+              We are interested in products, systems, and communities that give people more room to act on their own
+              taste, curiosity, and intention. This is the human reason underneath everything else on the site.
             </p>
-            <Link href="/projects" className="text-link mt-8">
-              explore projects next
+            <Link href="/approach" className="text-link mt-8">
+              read the approach next
             </Link>
           </article>
         </div>

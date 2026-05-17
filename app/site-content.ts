@@ -22,6 +22,7 @@ export type Project = {
 export const siteLinks = [
   { href: '/', label: 'home' },
   { href: '/vision', label: 'vision' },
+  { href: '/approach', label: 'approach' },
   { href: '/projects', label: 'projects' },
 ]
 
@@ -118,19 +119,55 @@ export const hiringFocus = [
 
 export const visionSections = [
   {
-    title: 'Freedom is not abstract',
+    title: 'Return attention to people',
     body:
-      'Antiheroism is ultimately about helping more people do what they actually want to do with their lives. We care about products that expand agency, sharpen self-knowledge, and make it easier to move through the world with intention.',
+      'The core idea is simple: attention should return to people. We want to help more people do what they actually want to do, instead of getting pulled forever into systems that flatten desire, curiosity, and direction.',
   },
   {
-    title: 'The founder path matters',
+    title: 'Become the main character',
     body:
-      'We back founders who reject the obvious path and build products that should not work until they do. That usually means conviction before consensus, a clearer point of view, and a willingness to serve people the mainstream keeps overlooking.',
+      'We care about products that help a person become their own protagonist again: more self-directed, more legible to themselves, and more capable of moving toward freedom and happiness with intention.',
   },
   {
-    title: 'Happiness needs structure',
+    title: 'Small groups can become real worlds',
     body:
-      'Freedom and happiness are not delivered by slogans alone. They need products, systems, and communities that help people stay legible to themselves while building the life they want. That is the long arc we want Antiheroism to bend toward.',
+      'Interesting things often start inside small interest groups where people can explore freely. If the signal is real, those spaces can grow into something more serious: a stronger product, a new company, or a new category of behavior.',
+  },
+]
+
+export const approachSections = [
+  {
+    title: 'Current-session execution',
+    body:
+      'The first layer of process-based AI is helping someone finish what is in front of them right now. It should reduce friction inside the current working session, not just produce a static answer and disappear.',
+  },
+  {
+    title: 'Cross-session execution',
+    body:
+      'The second layer carries work across sessions so time can be released instead of repeatedly re-spent. Context, intention, and unfinished motion should survive long enough to compound.',
+  },
+  {
+    title: 'Beyond lived experience',
+    body:
+      'The third layer expands what a person can explore beyond what they could individually experience in one lifetime. AI should widen the reachable space of action, simulation, and understanding.',
+  },
+]
+
+export const approachFramework = [
+  {
+    title: 'Source',
+    body:
+      'Where did the input come from, whose intention does it represent, and what human context gave it meaning in the first place?',
+  },
+  {
+    title: 'Cost',
+    body:
+      'What time, attention, and coordination does the system consume or release? Good tools should make real life lighter, not just make output faster.',
+  },
+  {
+    title: 'Outcome',
+    body:
+      'What becomes newly possible for the person on the other side? The point is not just efficiency. The point is more freedom, more authorship, and more real movement.',
   },
 ]
 

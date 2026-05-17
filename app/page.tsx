@@ -2,21 +2,12 @@ import Link from 'next/link'
 import { SiteFooter } from './components/site-footer'
 import { SiteHeader } from './components/site-header'
 import { HomeMotion } from './components/home-motion'
-import { hiringFocus, locations, projects } from './site-content'
+import { approachSections, projects, visionSections } from './site-content'
 
-const beliefs = [
-  {
-    title: 'Expand agency',
-    body: 'We care about products that help people do what they actually want to do — sharpen self-knowledge, move with intention, and resist the default path.',
-  },
-  {
-    title: 'Conviction before consensus',
-    body: 'We back founders with a sharp point of view, building for people the mainstream keeps overlooking. The best products shouldn\'t work — until they do.',
-  },
-  {
-    title: 'Structure for freedom',
-    body: 'Freedom needs more than slogans. It needs products, systems, and communities that help people stay legible to themselves while building the life they want.',
-  },
+const projectSignals = [
+  'small interest groups first',
+  'free exploration before scale',
+  'if the signal is real, it can become something much bigger',
 ]
 
 export default function Home() {
@@ -34,26 +25,27 @@ export default function Home() {
       </div>
 
       <div className="page-stage story-main">
-        <SiteHeader current="/" homeAnchors />
+        <SiteHeader current="/" />
 
-        <section className="story-section story-scene story-scene-hero" id="top">
+        <section className="story-section story-scene story-scene-hero story-section-full" id="top">
           <div className="page-shell hero-home-grid">
             <div className="hero-home-copy">
+              <p className="type-small section-kicker reveal-block">antiheroism</p>
               <h1 className="type-display hero-title hero-title-home reveal-block">
                 We build things the world didn&apos;t ask for.
               </h1>
               <p className="type-body hero-copy hero-copy-home reveal-block delay-1">
-                Antiheroism is a venture studio for founders who{' '}
-                <span className="keyword-highlight">reject the obvious path</span> and build products that
-                expand agency, sharpen identity, and make freedom more concrete.
+                The core is simple: <span className="keyword-highlight">return attention to people</span>. We want more
+                people to do what they actually want to do, become the main character in their own lives, and move
+                toward freedom and happiness with more authorship.
               </p>
               <div className="hero-actions reveal-block delay-2">
-                <a className="text-link type-body" href="#vision">
-                  our beliefs
+                <a className="text-link type-body" href="#human">
+                  keep scrolling
                 </a>
-                <a className="text-link type-body" href="#projects">
-                  current ventures
-                </a>
+                <Link className="text-link type-body" href="/vision">
+                  full vision
+                </Link>
               </div>
             </div>
 
@@ -65,89 +57,135 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="story-section story-scene story-scene-vision" id="vision">
-          <div className="page-shell">
-            <div className="beliefs-header reveal-block">
-              <p className="type-small section-kicker">what we believe</p>
-              <h2 className="type-section section-title section-title-wide">
-                Products should help people become more themselves, not more like everyone else.
-              </h2>
+        <section className="story-section story-scene story-scene-vision story-section-full" id="human">
+          <div className="page-shell frame-layout">
+            <div className="frame-copy reveal-block">
+              <p className="type-small section-kicker">01 / human thesis</p>
+              <h2 className="type-display frame-title">Attention should return to people.</h2>
+              <p className="type-body frame-body">
+                We care about products that help a person do what they actually want, become more themselves, and move
+                through life with more intention.
+              </p>
             </div>
-            <div className="beliefs-grid">
-              {beliefs.map((item, index) => (
-                <article key={item.title} className={`beliefs-card reveal-block delay-${index + 1}`}>
-                  <p className="type-small story-index">{item.title}</p>
-                  <p className="type-body story-body">{item.body}</p>
+            <div className="frame-panel reveal-block delay-1">
+              {visionSections.map((section, index) => (
+                <article key={section.title} className={`frame-note ${index === 0 ? 'frame-note-featured' : ''}`}>
+                  <p className="type-small story-index">{section.title}</p>
+                  <p className="type-body story-body">{section.body}</p>
                 </article>
               ))}
+              <Link href="/vision" className="text-link type-body">
+                read the full vision
+              </Link>
             </div>
           </div>
         </section>
 
-        <section className="story-section story-scene story-scene-projects" id="projects">
-          <div className="page-shell">
-            <div className="projects-dense-header reveal-block">
-              <p className="type-small section-kicker">ventures</p>
-              <h2 className="type-section section-title section-title-wide">
-                What we&apos;re building right now.
-              </h2>
+        <section className="story-section story-scene story-scene-approach story-section-full" id="approach">
+          <div className="page-shell frame-layout">
+            <div className="frame-copy reveal-block">
+              <p className="type-small section-kicker">02 / process-based ai</p>
+              <h2 className="type-display frame-title">Execution should compound across time.</h2>
+              <p className="type-body frame-body">
+                AI should help inside the current session, carry motion across sessions, and eventually expand what a
+                person can explore beyond their own lived limits.
+              </p>
             </div>
+            <div className="frame-panel frame-panel-stack reveal-block delay-1">
+              {approachSections.map((section, index) => (
+                <article key={section.title} className={`frame-line ${index === 0 ? 'frame-line-active' : ''}`}>
+                  <p className="type-small story-index">{section.title}</p>
+                  <p className="type-body story-body">{section.body}</p>
+                </article>
+              ))}
+              <Link href="/approach" className="text-link type-body">
+                full approach
+              </Link>
+            </div>
+          </div>
+        </section>
 
-            <div className="project-grid-dense">
-              {projects.map((project, index) => (
-                <article key={project.slug} className={`project-dense-card reveal-block delay-${index + 1}`}>
-                  <div className={`project-poster project-poster-${project.slug}`}>
-                    <div className="project-poster-content">
-                      <span className="type-display project-short">{project.shortName}</span>
-                      <span className="type-small project-name-on-poster">{project.name}</span>
+        <section className="story-section story-scene story-scene-projects story-section-full" id="projects">
+          <div className="page-shell frame-layout">
+            <div className="frame-copy reveal-block">
+              <p className="type-small section-kicker">03 / ventures</p>
+              <h2 className="type-display frame-title">Small groups can become real worlds.</h2>
+              <p className="type-body frame-body">
+                We like products that begin inside a small interest group where people can explore freely, then turn
+                into something stronger if the signal is real.
+              </p>
+            </div>
+            <div className="frame-panel reveal-block delay-1">
+              <div
+                className="project-rail"
+                role="list"
+                aria-label="Featured ventures"
+                data-count={projects.length}
+              >
+                {projects.map((project, index) => (
+                  <Link
+                    key={project.slug}
+                    href={`/projects/${project.slug}`}
+                    role="listitem"
+                    className="project-rail-card"
+                  >
+                    <div
+                      className={`project-poster project-poster-${project.slug} project-rail-poster`}
+                      aria-hidden="true"
+                    >
+                      <span className="project-short type-section">{project.shortName}</span>
                     </div>
-                  </div>
-                  <div className="project-feature-copy">
-                    <p className="type-small story-index">{project.status} · {project.category}</p>
-                    <h3 className="type-section card-title">{project.name}</h3>
-                    <p className="type-body story-body">{project.summary}</p>
-                    <p className="type-body story-caption">
-                      <span className="keyword-highlight">{project.slogan}</span>
+                    <p className="type-small story-index project-rail-index">
+                      0{index + 1} · {project.status}
                     </p>
-                    <Link href={`/projects/${project.slug}`} className="text-link type-body">
-                      learn more
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="story-section story-scene story-scene-contact" id="contact">
-          <div className="page-shell contact-layout">
-            <div className="reveal-block">
-              <p className="type-small section-kicker">get in touch</p>
-              <h2 className="type-section section-title section-title-wide">
-                We&apos;re open to founders, collaborators, and people who know the defaults are broken.
-              </h2>
-              <div className="contact-points">
-                {hiringFocus.map((item, index) => (
-                  <div key={item} className={`bullet-row ${index === 0 ? '' : 'bullet-spaced'}`}>
-                    <span className="bullet-dot" />
-                    <p className="type-body story-caption">{item}</p>
-                  </div>
+                    <h3 className="type-section card-title">{project.name}</h3>
+                    <p className="type-body story-caption project-rail-caption">{project.summary}</p>
+                    <span className="type-small project-rail-cta" aria-hidden="true">
+                      open →
+                    </span>
+                  </Link>
                 ))}
               </div>
+              <div className="signal-list">
+                {projectSignals.map((signal, index) => (
+                  <p key={signal} className={`type-small signal-line ${index === 0 ? 'signal-line-glow' : ''}`}>
+                    {signal}
+                  </p>
+                ))}
+              </div>
+              <Link href="/projects" className="text-link type-body">
+                see all projects
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="story-section story-scene story-scene-contact story-section-full" id="contact">
+          <div className="page-shell frame-layout contact-frame">
+            <div className="frame-copy reveal-block">
+              <p className="type-small section-kicker">04 / contact</p>
+              <h2 className="type-display frame-title">If the defaults feel broken, talk to us.</h2>
+              <p className="type-body frame-body">
+                Founders, collaborators, and people following a strange but real signal are all welcome here.
+              </p>
+            </div>
+            <div className="frame-panel frame-panel-compact reveal-block delay-1">
+              <p className="type-body story-body">
+                Send context, what you are building, and why it matters now.
+              </p>
               <a href="mailto:hello@antiheroism.com" className="contact-email type-section">
                 hello@antiheroism.com
               </a>
-            </div>
-
-            <div className="locations-col reveal-block delay-1">
-              <p className="type-small section-kicker">where we are</p>
-              <div className="locations-stack">
-                {locations.map((location) => (
-                  <article key={location.city} className="location-card">
-                    <p className="type-body location-city">{location.city}</p>
-                    <p className="type-body story-caption">{location.note}</p>
-                  </article>
-                ))}
+              <div className="frame-links">
+                <Link href="/vision" className="text-link type-body">
+                  vision
+                </Link>
+                <Link href="/approach" className="text-link type-body">
+                  approach
+                </Link>
+                <Link href="/projects" className="text-link type-body">
+                  projects
+                </Link>
               </div>
             </div>
           </div>

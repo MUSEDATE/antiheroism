@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({
@@ -11,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Antiheroism | We build things the world did not ask for',
   description:
-    'Antiheroism backs founders who reject the obvious path and build products that should not work until they do.',
+    'Antiheroism returns attention to people through freedom-centered products, process-based AI, and ventures built against the obvious path.',
   metadataBase: new URL('https://antiheroism.com'),
   alternates: {
     canonical: '/',
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
   keywords: [
     'Antiheroism',
     'venture studio',
+    'process-based ai',
+    'human-centered products',
     'internet products',
     'founder studio',
     'musedates',
@@ -45,7 +48,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        <Script id="antiheroism-opening-gate" strategy="beforeInteractive">
+          {`try{if(window.localStorage.getItem('antiheroism-opening-seen')==='1'){document.documentElement.dataset.openingSeen='true';}}catch(e){}`}
+        </Script>
+        {children}
+      </body>
     </html>
   )
 }
