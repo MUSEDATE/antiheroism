@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { SiteFooter } from './components/site-footer'
 import { SiteHeader } from './components/site-header'
 import { HomeMotion } from './components/home-motion'
+import { WordReveal } from './components/text-reveal'
 import { approachSections, projects, visionSections } from './site-content'
 
 const projectSignals = [
@@ -31,9 +32,12 @@ export default function Home() {
           <div className="page-shell hero-home-grid">
             <div className="hero-home-copy">
               <p className="type-small section-kicker reveal-block">antiheroism</p>
-              <h1 className="type-display hero-title hero-title-home reveal-block">
-                We build things the world didn&apos;t ask for.
-              </h1>
+              <WordReveal
+                as="h1"
+                className="type-display hero-title hero-title-home"
+                text="We build things the world didn’t ask for."
+              />
+
               <p className="type-body hero-copy hero-copy-home reveal-block delay-1">
                 The core is simple: <span className="keyword-highlight">return attention to people</span>. We want more
                 people to do what they actually want to do, become the main character in their own lives, and move
@@ -57,24 +61,41 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="story-section story-scene story-scene-vision story-section-full" id="human">
-          <div className="page-shell frame-layout">
-            <div className="frame-copy reveal-block">
-              <p className="type-small section-kicker">01 / human thesis</p>
-              <h2 className="type-display frame-title">Attention should return to people.</h2>
-              <p className="type-body frame-body">
+        <section
+          className="story-section story-scene story-scene-vision story-section-full story-section-manifesto"
+          id="human"
+        >
+          <div className="page-shell">
+            <div className="manifesto-frame">
+              <p className="type-small manifesto-masthead reveal-block">
+                <span className="manifesto-masthead-mark">— 01 —</span>
+                <span>Human thesis</span>
+              </p>
+
+              <WordReveal
+                as="h2"
+                className="type-display manifesto-title"
+                text="Attention should return to people."
+              />
+
+              <p className="manifesto-lead reveal-block delay-1">
                 We care about products that help a person do what they actually want, become more themselves, and move
                 through life with more intention.
               </p>
-            </div>
-            <div className="frame-panel reveal-block delay-1">
-              {visionSections.map((section, index) => (
-                <article key={section.title} className={`frame-note ${index === 0 ? 'frame-note-featured' : ''}`}>
-                  <p className="type-small story-index">{section.title}</p>
-                  <p className="type-body story-body">{section.body}</p>
-                </article>
-              ))}
-              <Link href="/vision" className="text-link type-body">
+
+              <div className="manifesto-body reveal-block delay-2">
+                {visionSections.map((section, index) => (
+                  <article key={section.title} className="manifesto-paragraph">
+                    <span className="type-small manifesto-paragraph-index">0{index + 1}</span>
+                    <div>
+                      <p className="manifesto-paragraph-title">{section.title}</p>
+                      <p className="manifesto-paragraph-body">{section.body}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <Link href="/vision" className="text-link type-body manifesto-cta reveal-block delay-3">
                 read the full vision
               </Link>
             </div>

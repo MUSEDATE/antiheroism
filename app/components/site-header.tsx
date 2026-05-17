@@ -27,6 +27,7 @@ export function SiteHeader({ current }: SiteHeaderProps) {
           </a>
         </div>
       </div>
+      <div className="scroll-progress" aria-hidden="true" />
     </nav>
   )
 }

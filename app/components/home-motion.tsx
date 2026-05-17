@@ -47,21 +47,53 @@ export function HomeMotion() {
       })
     window.addEventListener('resize', updateOpeningTarget)
 
+    const storySections = Array.from(
+      document.querySelectorAll<HTMLElement>('.story-section')
+    )
+    const heroCopy = document.querySelector<HTMLElement>('.hero-home-copy')
+
     let ticking = false
     const handleScroll = () => {
       if (ticking) return
       ticking = true
       requestAnimationFrame(() => {
+        const scrollY = window.scrollY
+        const viewportH = window.innerHeight
+
         if (heroImage) {
-          const scrollY = window.scrollY
-          const y = scrollY * 0.12
+          const y = scrollY * 0.14
           const s = 1 + scrollY * 0.00008
           heroImage.style.transform = `translateY(${y}px) scale(${s})`
         }
+        if (heroCopy) {
+          const heroY = Math.min(scrollY * 0.22, 160)
+          const heroFade = Math.max(1 - scrollY / (viewportH * 0.85), 0)
+          heroCopy.style.transform = `translateY(${-heroY}px)`
+          heroCopy.style.opacity = String(heroFade)
+        }
+
+        const maxScroll = document.documentElement.scrollHeight - viewportH
+        const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0
+        document.documentElement.style.setProperty(
+          '--scroll-progress',
+          progress.toFixed(4)
+        )
+
+        const viewportMid = viewportH / 2
+        storySections.forEach((section) => {
+          const rect = section.getBoundingClientRect()
+          const sectionMid = rect.top + rect.height / 2
+          const raw = (sectionMid - viewportMid) / viewportH
+          const clamped = Math.max(-1, Math.min(1, raw))
+          section.style.setProperty('--scene-distance', Math.abs(clamped).toFixed(3))
+          section.style.setProperty('--scene-distance-signed', clamped.toFixed(3))
+        })
+
         ticking = false
       })
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -94,6 +126,18 @@ export function HomeMotion() {
       { threshold: 0.5, rootMargin: '0px 0px -10% 0px' }
     )
 
+    const wordsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed')
+            wordsObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+    )
+
     document
       .querySelectorAll<HTMLElement>('.reveal-block')
       .forEach((n) => revealObserver.observe(n))
@@ -103,6 +147,9 @@ export function HomeMotion() {
     document
       .querySelectorAll<HTMLElement>('.keyword-highlight')
       .forEach((n) => keywordObserver.observe(n))
+    document
+      .querySelectorAll<HTMLElement>('.reveal-words')
+      .forEach((n) => wordsObserver.observe(n))
 
     return () => {
       if (openingTimer) {
@@ -113,6 +160,7 @@ export function HomeMotion() {
       revealObserver.disconnect()
       sceneObserver.disconnect()
       keywordObserver.disconnect()
+      wordsObserver.disconnect()
     }
   }, [])
 

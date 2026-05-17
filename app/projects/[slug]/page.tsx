@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { HomeMotion } from '../../components/home-motion'
 import { SiteFooter } from '../../components/site-footer'
 import { SiteHeader } from '../../components/site-header'
+import { WordReveal } from '../../components/text-reveal'
 import { getProjectBySlug, projects } from '../../site-content'
 
 type PageProps = {
@@ -57,7 +58,7 @@ export default function ProjectDetailPage({ params }: PageProps) {
             </Link>
 
             <p className="type-small section-kicker project-detail-status">{project.status}</p>
-            <h1 className="type-display project-detail-title">{project.name}</h1>
+            <WordReveal as="h1" className="type-display project-detail-title" text={project.name} />
             <p className="type-body project-detail-lead">{project.hero}</p>
 
             <dl className="project-detail-facts type-small">
