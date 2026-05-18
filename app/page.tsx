@@ -20,7 +20,7 @@ export default function Home() {
         <div className="opening-sequence">
           <div className="opening-word">ANTIHEROISM</div>
           <div className="opening-logo-shell">
-            <img src="/antiheroism-mark.jpeg" alt="" className="opening-logo" />
+            <img src="/anti.svg" alt="" className="opening-logo" />
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function Home() {
 
             <div className="hero-brand-stage reveal-block delay-2">
               <div className="brand-grid-mark hero-logo-stage" aria-hidden="true">
-                <img src="/antiheroism-mark.jpeg" alt="" className="brand-image" />
+                <img src="/anti.svg" alt="" className="brand-image" />
               </div>
             </div>
           </div>
