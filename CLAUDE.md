@@ -36,10 +36,12 @@ Routes:
 `app/components/site-header.tsx` and `site-footer.tsx` are plain server components rendered on every page. **`app/components/home-motion.tsx` is a `'use client'` component that is rendered on every page** (not only the home page) — despite the name. It owns all client-side behavior:
 
 - The opening logo sequence (the full-screen "ANTIHEROISM" intro). It animates the opening logo toward the hero logo's measured position via CSS variables (`--opening-target-x/y/scale`) and persists "already seen" state in `localStorage` under the key `antiheroism-opening-seen`. The flag is also read by an inline `beforeInteractive` script in `app/layout.tsx` so the opening screen is suppressed before hydration on repeat visits — keep these two in sync if you change the storage key or the suppression behavior.
-- `IntersectionObserver`s that toggle `is-visible` on `.reveal-block`, `is-active` on `.story-scene`, and `is-highlighted` on `.keyword-highlight`. New animated content needs one of these class names plus the matching CSS in `globals.css`.
+- `IntersectionObserver`s that toggle `is-visible` on `.reveal-block`, `is-active` on `.story-scene`, `is-highlighted` on `.keyword-highlight`, and `is-revealed` on `.reveal-words`. New animated content needs one of these class names plus the matching CSS in `globals.css`.
 - A scroll-driven transform on `.brand-image`.
 
 If you add a new page, render `<HomeMotion />` inside it for animations to work.
+
+The `.reveal-words` elements come from the `WordReveal` server component in `app/components/text-reveal.tsx`: it splits a string into per-word `<span>`s, each carrying a `--i` index used by `globals.css` to stagger the reveal once `HomeMotion` adds `is-revealed`. Use it (not raw markup) for word-by-word headings — see `app/page.tsx` and `app/projects/[slug]/page.tsx`.
 
 ### Styling
 
@@ -50,3 +52,5 @@ Tailwind is configured (`tailwind.config.js`) but the design system is mostly **
 - Because of static export, any new dependency on runtime Next.js features (middleware, server actions, dynamic params without `generateStaticParams`) will break `npm run build`. Verify with a build before assuming it works.
 - The `out/` directory is the build artifact consumed by GitHub Actions. Don't edit it by hand; don't rely on its current contents being fresh.
 - `app/site-content.ts` is the single source of truth for the nav (`siteLinks`) — adding a route requires adding an entry there for it to appear in the header.
+- The root `index.html` is a standalone, hand-written prototype of the site and is **not** part of the Next.js build or the deployed output (`out/`). It is dead weight — don't edit it expecting to change the live site; the real pages live under `app/`.
+- `README.md` is partly stale (it describes an older About/Products/Contact layout and a product called "atpify" that no longer matches `site-content.ts`). Trust `site-content.ts` and this file over the README for current structure.
