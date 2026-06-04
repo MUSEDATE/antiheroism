@@ -194,8 +194,8 @@ export default function Home() {
               <p className="type-body story-body">
                 Send context, what you are building, and why it matters now.
               </p>
-              <a href="mailto:hello@antiheroism.com" className="contact-email type-section">
-                hello@antiheroism.com
+              <a href="mailto:hello@antihero.freeqiye.com" className="contact-email type-section">
+                hello@antihero.freeqiye.com
               </a>
               <div className="frame-links">
                 <Link href="/vision" className="text-link type-body">

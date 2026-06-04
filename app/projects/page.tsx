@@ -89,8 +89,8 @@ export default function ProjectsPage() {
               More ventures will appear here as they become real enough to talk about. If you are building something
               that belongs in this column, write to us.
             </p>
-            <a href="mailto:hello@antiheroism.com" className="text-link type-body">
-              hello@antiheroism.com
+            <a href="mailto:hello@antihero.freeqiye.com" className="text-link type-body">
+              hello@antihero.freeqiye.com
             </a>
           </div>
         </div>

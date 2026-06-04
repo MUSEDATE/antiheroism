@@ -22,7 +22,7 @@ export function SiteHeader({ current }: SiteHeaderProps) {
               {link.label}
             </Link>
           ))}
-          <a className="nav-link" href="mailto:hello@antiheroism.com">
+          <a className="nav-link" href="mailto:hello@antihero.freeqiye.com">
             contact
           </a>
         </div>

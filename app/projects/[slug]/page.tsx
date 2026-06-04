@@ -153,8 +153,8 @@ export default function ProjectDetailPage({ params }: PageProps) {
             <h2 className="type-section project-detail-outro-title">
               If you’re building toward the same shape, we want to hear about it.
             </h2>
-            <a href="mailto:hello@antiheroism.com" className="text-link type-body">
-              hello@antiheroism.com
+            <a href="mailto:hello@antihero.freeqiye.com" className="text-link type-body">
+              hello@antihero.freeqiye.com
             </a>
           </div>
 
